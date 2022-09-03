@@ -1,0 +1,32 @@
+server:
+  port: 18086
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1
+  elasticsearch:
+    rest:
+      uris: http://192.168.236.128:9200
+  jackson:
+    default-property-inclusion: non_null
+  thymeleaf:
+    cache: false
+feign:
+  sentinel:
+    enabled: true
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000

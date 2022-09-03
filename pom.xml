@@ -19,13 +19,16 @@
     <modules>
         <module>gmall-admin</module>
         <module>gmall-common</module>
+        <module>gmall-sms-interface</module>
+        <module>gmall-pms-interface</module>
+        <module>gmall-wms-interface</module>
     </modules>
 
     <properties>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
         <mybatisplus.version>3.4.3.4</mybatisplus.version>
-        <mysql.version>5.1.46</mysql.version>
+        <mysql.version>8.0.12</mysql.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.8</lombok.version>
         <jjwt.version>0.11.0</jjwt.version>

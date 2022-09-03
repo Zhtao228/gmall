@@ -1,0 +1,42 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: pms-route
+          uri: lb://pms-service
+          predicates:
+            - Path=/pms/**
+        - id: oms-route
+          uri: lb://oms-service
+          predicates:
+            - Path=/oms/**
+        - id: ums-route
+          uri: lb://ums-service
+          predicates:
+            - Path=/ums/**
+        - id: wms-route
+          uri: lb://wms-service
+          predicates:
+            - Path=/wms/**
+        - id: sms-route
+          uri: lb://sms-service
+          predicates:
+            - Path=/sms/**
+        - id: search-route
+          uri: lb://search-service
+          predicates:
+            - Path=/search/**
+        - id: index-route1 # 首页的同步请求路由
+          uri: lb://index-service
+          predicates:
+            - Host=www.gmall.com
+          # - Path=/index/**  如果写在一个里面，他们的关系是and关系
+        - id: index-route2 # 首页的异步请求路由
+          uri: lb://index-service
+          predicates:
+            - Path=/index/**
