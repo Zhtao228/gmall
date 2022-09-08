@@ -84,8 +84,6 @@ public class SearchService {
                 HighlightField title = highlightFields.get("title");
                 Text fragment = title.getFragments()[0];
                 goods.setTitle(fragment.string());
-
-
                 return goods;
             }).collect(Collectors.toList()));
         }
@@ -257,6 +255,5 @@ public class SearchService {
         System.out.println(sourceBuilder);
         return sourceBuilder;
     }
-
 
 }

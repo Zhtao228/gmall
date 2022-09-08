@@ -52,7 +52,7 @@ class GmallSearchApplicationTests {
                 return;
             }
             spuEntities.forEach(spuEntity -> {
-                ResponseVo<List<SkuEntity>> skuResponseVo = pmsClient.querySkuBySkuId(spuEntity.getId());
+                ResponseVo<List<SkuEntity>> skuResponseVo = pmsClient.querySkuBySpuId(spuEntity.getId());
                 List<SkuEntity> skuEntities = skuResponseVo.getData();
                 if (Collections.isEmpty(skuEntities)){
                     return;

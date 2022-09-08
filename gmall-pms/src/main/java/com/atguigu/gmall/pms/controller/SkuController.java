@@ -2,6 +2,7 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.atguigu.gmall.pms.entity.SkuImagesEntity;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,10 +37,11 @@ public class SkuController {
     private SkuService skuService;
 
     @GetMapping("spu/{spuId}")
-    public ResponseVo<List<SkuEntity>> querySkuBySkuId(@PathVariable("spuId")Long spuId){
+    public ResponseVo<List<SkuEntity>> querySkuBySpuId(@PathVariable("spuId")Long spuId){
         List<SkuEntity> skuEntities = skuService.list(new QueryWrapper<SkuEntity>().eq("spu_id", spuId));
         return ResponseVo.ok(skuEntities);
     }
+
 
     /**
      * 列表

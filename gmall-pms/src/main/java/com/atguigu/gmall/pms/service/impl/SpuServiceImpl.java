@@ -14,6 +14,8 @@ import io.jsonwebtoken.lang.Collections;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,8 @@ public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuEntity> implements
     private SkuImagesService skuImagesService;
     @Autowired
     private GmallSmsClient gmallSmsClient;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
 
     @Override
@@ -96,6 +100,8 @@ public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuEntity> implements
         // 保存Sku
         this.saveSku(spu, spuId);
 
+        this.rabbitTemplate.convertAndSend("PMS_SPU_EXCHANGE","item.insert",spuId);
+
     }
 
     private void saveSku(SpuVo spu, Long spuId) {
@@ -142,7 +148,6 @@ public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuEntity> implements
                     skuImagesEntity.setDefaultStatus(StringUtils.equals(image,skuVo.getDefaultImage()) ? 1 :0);
                     return skuImagesEntity;
                 }).collect(Collectors.toList()));
-
             }
 
             SkuSaleVo skuSaleVo = new SkuSaleVo();
@@ -177,6 +182,14 @@ public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuEntity> implements
         spu.setUpdateTime(spu.getCreateTime());
         save(spu);
         return spu.getId();
+    }
+
+    private void sendMessage(Long id , String type){
+        try {
+            this.rabbitTemplate.convertAndSend("item.exchange","item."+type,id);
+        } catch (Exception e) {
+            log.error(type+"商品消息发送异常，商品id："+id,e);
+        }
     }
 
 }

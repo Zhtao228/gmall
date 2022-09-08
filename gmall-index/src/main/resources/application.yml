@@ -19,9 +19,12 @@ spring:
       probability: 1
   redis:
     host: 192.168.236.128
+    port: 6379
   thymeleaf:
     cache: false
-
 feign:
   sentinel:
     enabled: true
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000

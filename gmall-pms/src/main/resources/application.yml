@@ -28,12 +28,20 @@ spring:
   redis:
     host: 192.168.236.128
     port: 6379
+  rabbitmq:
+    host: 192.168.236.128
+    port: 5672
+    virtual-host: /admin
+    username: admin
+    password: 123456
+    publisher-confirm-type: simple
+    publisher-returns: true
 feign:
   sentinel:
     enabled: true
 
 mybatis-plus:
-  mapper-locations: classpath:*.xml
+  mapper-locations: classpath:mapper/pms/*.xml
   type-aliases-package: com.atguigu.gmall.pms.entity
   global-config:
     db-config:

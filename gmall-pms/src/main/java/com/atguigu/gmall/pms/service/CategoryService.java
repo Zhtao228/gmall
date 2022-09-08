@@ -18,8 +18,9 @@ import java.util.Map;
 public interface CategoryService extends IService<CategoryEntity> {
 
     PageResultVo queryPage(PageParamVo paramVo);
-
-
     List<CategoryEntity> queryCategoriesByPid(Long parentId);
+    List<CategoryEntity> queryLvl2CategoriesWithSubsByPid(Long pid);
+
+    List<CategoryEntity> queryCategoriesByCid3(Long cid);
 }
 

@@ -2,4 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.pms.mapper.CategoryMapper">
 
+    <!--
+    先试用c1id查询 二级分类集合
+    在二级分类集合中嵌套试用二级分类的id查询每个二级分类的子集合进行封装
+    autoMapping:启用自动映射，将查询到的字段的值设置给type类型对应的属性
+
+    subs因为是手动添加的属性，表中并不存在，需要我们手动处理
+-->
+    <!--
+       collection： 封装一个集合设置给CategoryEntity的property属性
+       property 代表CategoryEntity的一个属性
+       ofType： 集合中一个元素的类型
+       select： 复用的sql的id
+       column：使用外面查询的哪个字段当做参数值使用
+      -->
+    <resultMap id="queryCatesAndsSubsResultMap" type="com.atguigu.gmall.pms.entity.CategoryEntity"
+               autoMapping="true">
+        <collection property="subs" ofType="com.atguigu.gmall.pms.entity.CategoryEntity"
+                    select="com.atguigu.gmall.pms.mapper.CategoryMapper.queryCateLevel1AndLevel2" column="id" autoMapping="true"
+        ></collection>
+    </resultMap>
+    <select id="queryCateLevel1AndLevel2"  resultMap="queryCatesAndsSubsResultMap">
+        SELECT * FROM pms_category WHERE parent_id = #{pid}
+    </select>
 </mapper>
