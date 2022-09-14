@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.atguigu</groupId>
 	<artifactId>gmall-generator</artifactId>
@@ -12,6 +12,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.6.RELEASE</version>
+		<relativePath/>
 	</parent>
 
 	<properties>
@@ -26,7 +27,7 @@
 		<fastjson.version>1.2.45</fastjson.version>
 		<velocity.version>1.7</velocity.version>
 		<pagehelper.spring.boot.version>1.2.5</pagehelper.spring.boot.version>
-		<mysql.version>8.0.25</mysql.version>
+		<mysql.version>5.1.38</mysql.version>
 		<mssql.version>4.0</mssql.version>
 		<oracle.version>11.2.0.3</oracle.version>
 	</properties>

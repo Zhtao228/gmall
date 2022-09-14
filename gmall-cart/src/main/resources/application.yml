@@ -1,0 +1,35 @@
+server:
+  port: 18090
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+    alibaba:
+      seata:
+        tx-service-group: gmall_tx_group
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.236.128:3306/guli_cart?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.236.128
+    port: 6379
+  thymeleaf:
+    cache: false
+feign:
+  sentinel:
+    enabled: true

@@ -20,9 +20,16 @@ spring:
   redis:
     port: 6379
     host: 192.168.236.128
+  thymeleaf:
+    cache: false
 feign:
   sentinel:
     enabled: true
 logging:
   level:
     com.atguigu.gmall: debug
+ThreadPool:
+  corePoolSize: 100
+  maxmumPoolSize: 500
+  keepAliveTime: 60
+  blockingQueue: 5000

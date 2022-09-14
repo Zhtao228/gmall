@@ -46,8 +46,8 @@ public class SkuImagesController {
         return ResponseVo.ok(pageResultVo);
     }
 
-    @GetMapping("{skuId}")
-    public ResponseVo<List<SkuImagesEntity>> querySkuImagesBySpuId(@PathVariable("skuId")Long skuId ){
+    @GetMapping("sku/{skuId}")
+    public ResponseVo<List<SkuImagesEntity>> querySkuImagesBySkuId(@PathVariable("skuId")Long skuId){
         List<SkuImagesEntity> skuImagesEntities =skuImagesService.list(new QueryWrapper<SkuImagesEntity>().eq("sku_id",skuId));
         return ResponseVo.ok(skuImagesEntities);
     }

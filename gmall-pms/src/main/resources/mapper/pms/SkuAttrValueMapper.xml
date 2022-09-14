@@ -2,4 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.pms.mapper.SkuAttrValueMapper">
 
+
+
+    <select id="queryMappingBySkuId" resultType="map">
+        select sku_id, GROUP_CONCAT(attr_value ORDER BY attr_id ASC) as attrValues
+        from pms_sku_attr_value
+        <trim prefix="where" prefixOverrides="and|or" suffix="GROUP BY sku_id" suffixOverrides=",">
+            and sku_id in
+            <foreach collection="skuIds" item="skuId" separator="," open="(" close=")">
+                #{skuId}
+            </foreach>
+        </trim>
+    </select>
+
+
 </mapper>

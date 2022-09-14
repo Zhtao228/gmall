@@ -2,6 +2,7 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+
 import com.atguigu.gmall.pms.vo.SpuVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atguigu.gmall.pms.entity.SpuEntity;
@@ -34,6 +34,8 @@ public class SpuController {
 
     @Autowired
     private SpuService spuService;
+
+
 
     @GetMapping("category/{categoryId}")
     public ResponseVo<PageResultVo> querySpuByPageAndCid(

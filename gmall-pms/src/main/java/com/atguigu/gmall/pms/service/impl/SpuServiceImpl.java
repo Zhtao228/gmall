@@ -1,39 +1,36 @@
 package com.atguigu.gmall.pms.service.impl;
 
+
+import com.alibaba.nacos.common.utils.StringUtils;
+import com.atguigu.gmall.common.bean.PageParamVo;
+import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.pms.entity.*;
 import com.atguigu.gmall.pms.feign.GmallSmsClient;
-import com.atguigu.gmall.pms.mapper.*;
+import com.atguigu.gmall.pms.mapper.SkuMapper;
+import com.atguigu.gmall.pms.mapper.SpuDescMapper;
+import com.atguigu.gmall.pms.mapper.SpuMapper;
 import com.atguigu.gmall.pms.service.SkuAttrValueService;
 import com.atguigu.gmall.pms.service.SkuImagesService;
 import com.atguigu.gmall.pms.service.SpuAttrValueService;
+import com.atguigu.gmall.pms.service.SpuService;
 import com.atguigu.gmall.pms.vo.SkuVo;
 import com.atguigu.gmall.pms.vo.SpuAttrValueVo;
 import com.atguigu.gmall.pms.vo.SpuVo;
 import com.atguigu.gmall.sms.vo.SkuSaleVo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.jsonwebtoken.lang.Collections;
 import io.seata.spring.annotation.GlobalTransactional;
-import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.gmall.common.bean.PageResultVo;
-import com.atguigu.gmall.common.bean.PageParamVo;
-
-import com.atguigu.gmall.pms.service.SpuService;
-
 
 @Service("spuService")
 public class SpuServiceImpl extends ServiceImpl<SpuMapper, SpuEntity> implements SpuService {

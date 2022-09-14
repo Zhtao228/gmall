@@ -32,7 +32,7 @@ public class ItemVo {
     private String title;
     private String subTitle;
     private BigDecimal price;
-    private Long weight;
+    private Integer weight;
     private String defaltImage;
 
     // sku 的图片
@@ -54,7 +54,7 @@ public class ItemVo {
     private Map<Long,String> saleAttr;
 
     // 销售属性组合和skuId映射关系：{'暗夜黑,8G,128G': 100, '白天白,12G,128G': 101} V O
-    private String skuJson;
+    private String skuJsons;
 
     // spu的海报信息  V O
     private List<String> spuImages;
