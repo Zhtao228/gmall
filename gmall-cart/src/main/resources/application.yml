@@ -30,6 +30,41 @@ spring:
     port: 6379
   thymeleaf:
     cache: false
+  rabbitmq:
+    host: 192.168.236.128
+    port: 5672
+    virtual-host: /admin
+    username: admin
+    password: 123456
+    listener:
+      simple:
+        prefetch: 1
+        concurrency: 6
+        acknowledge-mode: manual
+  task:
+    execution:
+      thread-name-prefix: gmall-cart-
+      pool:
+        core-size: 100
+        max-size: 500
+        queue-capacity: 5000
+        keep-alive: 60s
+        allow-core-thread-timeout: false
+      shutdown:
+        await-termination: true
+        await-termination-period: 60
 feign:
   sentinel:
     enabled: true
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+jwt:
+  pubKeyPath: C:\project\rsa\rsa.pub
+  expire: 259200
+  cookieName: GMALL-TOKEN
+  userKey: user-key
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000

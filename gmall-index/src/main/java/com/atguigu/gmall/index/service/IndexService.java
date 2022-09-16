@@ -45,7 +45,8 @@ public class IndexService {
         return categoryResponseVoData;
     }
 
-    @GmallCache(prefix = "index:cates",timeout = 14400,random = 3600,lock = "lock")
+    //prefix前缀有问题跟布隆过滤器里的不一致
+    @GmallCache(prefix = "INDEX:CATES:",timeout = 14400,random = 3600,lock = "lock")
     public List<CategoryEntity> queryLv2CategoriesById(Long pid) {
         ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsFeign.queryLv2CategoriesWithSubsById(pid);
         return listResponseVo.getData();
